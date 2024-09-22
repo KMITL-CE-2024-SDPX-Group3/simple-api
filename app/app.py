@@ -1,34 +1,43 @@
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
     return "Index!"
+
 
 @app.route('/hello/<name>', methods=['GET'])
 def hello(name):
     return "Hello, " + str(name)
 
 
-@app.route('/calculate/<num1>/<num2>', methods=['GET'])
-def calculate(num1, num2):
+@app.route("/getcode", methods=['GET'])
+def get_code():
+    return f"function: {get_code.__name__}"
+
+
+@app.route("/plus/<number_1>/<number_2>", methods=['GET'])
+def plus(number_1: str, number_2: str):
     try:
-        num1 = eval(num1)
-        num2 = int(num2)
+        number_1: float = float(number_1)
+        number_2: float = float(number_2)
+        result = number_1 + number_2
 
-        results = {
-                'plus' : num1 + num2,
-                'minus' : num1 - num2,
-                'multiply': num1 * num2,
-                'divide' : num1/num2
-            }
-    except:
-        results = { 'error_msg' : 'inputs must be numbers' }
+        if result.is_integer():
+            result = int(result)
 
-    return jsonify(results)
+        return jsonify({
+            "result": result
+        })
+    except ValueError:
+        # If the conversion fails, return a 400 Bad Request
+        abort(400, description="Invalid input: both parameters must be numbers")
+        return None  # This line is required for the type hint when abort is called
 
 
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    app.run(debug=True)
