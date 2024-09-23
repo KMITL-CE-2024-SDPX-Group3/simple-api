@@ -88,7 +88,7 @@ pipeline{
                 ){
                     sh "docker login ghcr.io -u ${GITHUB_USERNAME} -p ${GITHUB_PASSWORD}"
                     sh "docker push ghcr.io/kmitl-ce-2024-sdpx-group3/simple-api-image"
-                    sh "docker rmi -f ghcr.io/kmitl-ce-2024-sdpx-group3/simple-api-image:lastest"
+                    sh "docker rmi -f ghcr.io/kmitl-ce-2024-sdpx-group3/simple-api-image:latest"
                 }
             }
         }
