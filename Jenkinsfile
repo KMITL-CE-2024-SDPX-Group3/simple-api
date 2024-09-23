@@ -12,7 +12,7 @@ pipeline{
                 label "VM-Test"
             }
             steps {
-                sh "python3 -m venv myenv"
+                sh "python3 -m venv test-env"
             }
         }
 
