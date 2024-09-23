@@ -69,7 +69,7 @@ pipeline{
                 label "VM-Test"
             }
             steps {
-                sh "robot test-plus.robot"
+                sh ". ${VENV_NAME}/bin/activate && robot test-plus.robot"
             }
         }
 
@@ -80,7 +80,7 @@ pipeline{
             steps {
                 withCredentials(
                     [usernamePassword(
-                        credentialsId: "Sun-GitHub-Token",
+                        credentialsId: "Sun-GitHub-Package",
                         passwordVariable: "GITHUB_PASSWORD",
                         usernameVariable: "GITHUB_USERNAME"
                     )]
@@ -108,7 +108,7 @@ pipeline{
             steps {
                 withCredentials(
                     [usernamePassword(
-                        credentialsId: "Sun-GitHub-Token",
+                        credentialsId: "Sun-GitHub-Package",
                         passwordVariable: "GITHUB_PASSWORD",
                         usernameVariable: "GITHUB_USERNAME"
                     )]
