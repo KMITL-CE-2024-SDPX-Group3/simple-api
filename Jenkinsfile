@@ -16,14 +16,14 @@ pipeline{
             }
         }
 
-        stage("Clone simple-api repository"){
-            agent {
-                label "VM-Test"
-            }
-            steps {
-                sh "git clone https://github.com/KMITL-CE-2024-SDPX-Group3/simple-api"
-            }
-        }
+        // stage("Clone simple-api repository"){
+        //     agent {
+        //         label "VM-Test"
+        //     }
+        //     steps {
+        //         sh "git clone https://github.com/KMITL-CE-2024-SDPX-Group3/simple-api"
+        //     }
+        // }
 
         stage("Run Unit Test"){
             agent {
