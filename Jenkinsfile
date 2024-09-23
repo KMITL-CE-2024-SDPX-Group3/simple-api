@@ -4,18 +4,26 @@ pipeline{
     environment{
         APP_NAME = "Simple API - SDPX G3"
         IMAGE_NAME = "ghcr.io/kmitl-ce-2024-sdpx-group3/simple-api-image:lastest"
+        VENV_NAME = 'myenv'
 
     }
     stages{
-        stage('Activate Existing Python Environment') {
+        stage("Setup Python Environment"){
+            agent {
+                label "VM-Test"
+            }
             steps {
-                script {
-                    // Activate the existing virtual environment
-                    sh '''
-                    . /home/vm-test/test-env/bin/activate
-                    pip install -r requirements.txt
-                    '''
-                }
+                sh "python3 -m venv ${VENV_NAME}"
+                sh "source ${VENV_NAME}/bin/activate"
+            }
+        }
+
+        stage("Install Python Dependencies"){
+            agent {
+                label "VM-Test"
+            }
+            steps {
+                sh "${VENV_NAME}/bin/pip install -r requirements.txt"
             }
         }
 
@@ -24,7 +32,7 @@ pipeline{
                 label "VM-Test"
             }
             steps {
-                sh "python3 -m unittest tests/test_plus.py"
+                sh "source ${VENV_NAME}/bin/activate && python3 -m unittest tests/test_plus.py"
             }
         }
 
@@ -119,6 +127,12 @@ pipeline{
                 sh "docker compose up -d"
             }
         }
+    }
 
+    post {
+        always {
+            // Clean up the virtual environment
+            sh "rm -rf ${VENV_NAME}"
+        }
     }
 }
