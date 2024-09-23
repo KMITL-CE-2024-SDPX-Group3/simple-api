@@ -1,0 +1,12 @@
+name: simple-api
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    ports:
+      - "5555:5000"
+    volumes:
+      - ./app:/simple-api
+    image: ghcr.io/kmitl-ce-2024-sdpx-group3/simple-api-image:latest

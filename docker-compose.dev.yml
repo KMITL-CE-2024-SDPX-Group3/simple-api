@@ -1,0 +1,8 @@
+name: simple-api-dev
+
+services:
+  api:
+    extends:
+      file: docker-compose.yml
+      service: api
+    image: ghcr.io/kmitl-ce-2024-sdpx-group3/simple-api-image:dev

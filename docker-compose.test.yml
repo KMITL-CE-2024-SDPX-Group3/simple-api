@@ -1,0 +1,9 @@
+name: simple-api-test
+
+services:
+  api:
+    extends:
+      file: docker-compose.yml
+      service: api
+    ports:
+      - "80:5000"

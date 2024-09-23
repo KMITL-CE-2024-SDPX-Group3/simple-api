@@ -1,14 +1,19 @@
-# syntax=docker/dockerfile:1
+# Build Stage
+FROM python:3.10-slim AS build
+WORKDIR /simple-api
+
+# RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements.txt .
+RUN pip install --prefix=/install -r requirements.txt
+
+# Final Stage
 FROM python:3.10-slim
-WORKDIR /app
+COPY --from=build /install /usr/local
 
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
-# RUN apk add --no-cache gcc musl-dev linux-headers
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
-EXPOSE 5000
+WORKDIR /simple-api
 COPY . .
 
 CMD ["flask", "run"]
