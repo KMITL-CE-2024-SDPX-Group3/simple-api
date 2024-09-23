@@ -60,6 +60,7 @@ pipeline{
                 label "VM-Test"
             }
             steps {
+                sh "rm -rf simple-api-robot"
                 sh "git clone https://github.com/KMITL-CE-2024-SDPX-Group3/simple-api-robot"
             }
         }
@@ -133,7 +134,6 @@ pipeline{
         always {
             // Clean up the virtual environment
             sh "rm -rf ${VENV_NAME}"
-            sh "rm -rf simple-api-robot"
         }
     }
 }
