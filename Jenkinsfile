@@ -70,7 +70,7 @@ pipeline{
                 label "VM-Test"
             }
             steps {
-                sh ". ${VENV_NAME}/bin/activate && robot tests/test-plus.robot"
+                sh ". ${VENV_NAME}/bin/activate && robot simple-api-robot/test-plus.robot"
             }
         }
 
