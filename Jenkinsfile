@@ -16,14 +16,15 @@ pipeline{
             }
         }
 
-        // stage("Clone simple-api repository"){
-        //     agent {
-        //         label "VM-Test"
-        //     }
-        //     steps {
-        //         sh "git clone https://github.com/KMITL-CE-2024-SDPX-Group3/simple-api"
-        //     }
-        // }
+        stage("Install Python Dependencies"){
+            agent {
+                label "VM-Test"
+            }
+            steps {
+                sh "source test-env/bin/activate"
+                sh "pip install -r requirements.txt"
+            }
+        }
 
         stage("Run Unit Test"){
             agent {
