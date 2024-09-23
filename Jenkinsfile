@@ -12,7 +12,7 @@ pipeline{
                 script {
                     // Activate the existing virtual environment
                     sh '''
-                    . ~/test-env/bin/activate
+                    . /home/vm-test/test-env/bin/activate
                     pip install -r requirements.txt
                     '''
                 }
