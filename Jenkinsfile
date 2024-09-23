@@ -13,6 +13,7 @@ pipeline{
             }
             steps {
                 sh "python3 -m venv venv"
+                sh "chmod +x venv/bin/activate"
             }
         }
 
