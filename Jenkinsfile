@@ -133,6 +133,7 @@ pipeline{
         always {
             // Clean up the virtual environment
             sh "rm -rf ${VENV_NAME}"
+            sh "rm -rf simple-api-robot"
         }
     }
 }
