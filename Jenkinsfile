@@ -7,12 +7,13 @@ pipeline{
 
     }
     stages{
-        stage("Activate Python Environment"){
+        stage("Set up Python Environment"){
             agent {
                 label "VM-Test"
             }
             steps {
-                sh "python3 -m venv test-env"
+                sh "python3 -m venv venv"
+                sh "source venv/bin/activate"
             }
         }
 
@@ -21,7 +22,6 @@ pipeline{
                 label "VM-Test"
             }
             steps {
-                sh "source test-env/bin/activate"
                 sh "pip install -r requirements.txt"
             }
         }
