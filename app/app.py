@@ -1,4 +1,3 @@
-
 from flask import Flask, jsonify, abort
 
 app = Flask(__name__)
@@ -36,6 +35,11 @@ def plus(number_1: str, number_2: str):
         # If the conversion fails, return a 400 Bad Request
         abort(400, description="Invalid input: both parameters must be numbers")
         return None  # This line is required for the type hint when abort is called
+
+
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({'error': error.description}), 400
 
 
 if __name__ == '__main__':
