@@ -30,7 +30,7 @@ pipeline{
                 label "VM-Test"
             }
             steps {
-                sh "python3 -m unittest tests/test-plus.py"
+                sh "python3 -m unittest tests/test_plus.py"
             }
         }
 
