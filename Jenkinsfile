@@ -7,22 +7,15 @@ pipeline{
 
     }
     stages{
-        stage("Set up Python Environment"){
-            agent {
-                label "VM-Test"
-            }
+        stage('Activate Existing Python Environment') {
             steps {
-                sh "python3 -m venv venv"
-                sh "chmod +x venv/bin/activate"
-            }
-        }
-
-        stage("Install Python Dependencies"){
-            agent {
-                label "VM-Test"
-            }
-            steps {
-                sh "venv/bin/activate && pip install -r requirements.txt"
+                script {
+                    // Activate the existing virtual environment
+                    sh '''
+                    source ~/test-env/bin/activate
+                    pip install -r requirements.txt
+                    '''
+                }
             }
         }
 
