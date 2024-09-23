@@ -1,7 +1,5 @@
 pipeline{
-    agent{
-        label "node"
-    }
+    agent any
 
     environment{
         APP_NAME = "Simple API - SDPX G3"
