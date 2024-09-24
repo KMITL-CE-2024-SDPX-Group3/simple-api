@@ -15,7 +15,7 @@ def hello(name):
 
 @app.route("/getcode", methods=['GET'])
 def get_code():
-    return f"TEST-FEATURE => This function: {get_code.__name__}"
+    return f"FEATURE => This function: {get_code.__name__}"
 
 
 @app.route("/plus/<number_1>/<number_2>", methods=['GET'])
