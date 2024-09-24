@@ -81,7 +81,7 @@ pipeline{
             steps {
                 withCredentials(
                     [usernamePassword(
-                        credentialsId: "Sun-GitHub-Package",
+                        credentialsId: "Sun-GitHub-SDPX",
                         passwordVariable: "GITHUB_PASSWORD",
                         usernameVariable: "GITHUB_USERNAME"
                     )]
@@ -109,7 +109,7 @@ pipeline{
             steps {
                 withCredentials(
                     [usernamePassword(
-                        credentialsId: "Sun-GitHub-Package",
+                        credentialsId: "Sun-GitHub-SDPX",
                         passwordVariable: "GITHUB_PASSWORD",
                         usernameVariable: "GITHUB_USERNAME"
                     )]
